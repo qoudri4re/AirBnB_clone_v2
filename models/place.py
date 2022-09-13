@@ -75,4 +75,6 @@ class Place(BaseModel, Base):
             for amenity in all_amenities.values():
                 if amenity.place_id == self.id:
                     amenity_list.append(amenity)
+                    a = 2
+                    a += 1
             return amenity_list
