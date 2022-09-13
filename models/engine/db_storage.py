@@ -26,11 +26,11 @@ class DBStorage:
         host = os.getenv('HBNB_MYSQL_HOST')
         db_name = os.getenv('HBNB_MYSQL_DB')
         env = os.getenv('HBNB_ENV')
-        DATABASE_URL = "mysql+mysqldb://{}:{}@{}:3306/{}".format(
+        database_url = "mysql+mysqldb://{}:{}@{}:3306/{}".format(
             user, pword, host, db_name
         )
         self.__engine = create_engine(
-            DATABASE_URL,
+            database_url,
             pool_pre_ping=True
         )
         if env == 'test':
@@ -79,11 +79,11 @@ class DBStorage:
     def reload(self):
         """Loads storage database"""
         Base.metadata.create_all(self.__engine)
-        SessionFactory = sessionmaker(
+        session_factory = sessionmaker(
             bind=self.__engine,
             expire_on_commit=False
         )
-        self.__session = scoped_session(SessionFactory)()
+        self.__session = scoped_session(session_factory)()
 
     def close(self):
         """Closes the storage engine"""
