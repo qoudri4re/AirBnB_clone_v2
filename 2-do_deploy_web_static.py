@@ -32,7 +32,6 @@ def do_pack():
         output = None
     return output
 
-
 def do_deploy(archive_path):
     """Deploys the static files to the host servers.
     Args:
@@ -57,4 +56,4 @@ def do_deploy(archive_path):
         success = True
     except Exception:
         success = False
-    return 
+    return
